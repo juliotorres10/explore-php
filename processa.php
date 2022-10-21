@@ -12,7 +12,7 @@ $cidade = $_POST['cidade'];
 $destinos = $_POST['destinos'];
 $hospedagem = $_POST['hospedagem'];
 $mensagem = $_POST['mensagem'];
-$dt_cadastro = date('Y-m-d');
+$dt_cadastro = $_POST['dt-cadastro'];
 
 //para inverstigar variáveis e expressões
 //var_dump($_POST);
@@ -34,14 +34,17 @@ try {
         ':idade' => $idade,
         ':estado' => $estado,
         ':cidade' => $cidade,
-        ':destinos' => $destinos,
+        ':destinos' => implode (',',$destinos), //CONVERTE array em texto
         ':hospedagem' => $hospedagem,
         ':mensagem' => $mensagem,
-        ':dt_cadastro' => $dt_cadastro,
+        ':dt_cadastro' => date('Y-m-d', strtotime ($dt_cadastro)) 
     ));
 
-    echo'<h1>Usuário cadastrado<h1/>';
-    var_dump($_POST);
+   //carrega a página index.html
+   header('Location:index.html?cadastro=ok');
+
+  
+
 } catch (PDOException $erro) {
     echo $erro;
 }

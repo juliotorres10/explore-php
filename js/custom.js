@@ -1,7 +1,20 @@
 /*  ///////////////////  FUNÇÕES   ////////////////////  */
+
+// aO CARREGAR a página verifica o parametro "cadastro"
+//se o valor for "ok" exibe um alert
+const urlParams = new URLSearchParams(window.location.search);
+var parCadastro = urlParams.get('cadastro')
+if(parCadastro == 'ok'){
+  let listaClasses = document.getElementById('msg').classList
+  listaClasses.remove('d-none')
+  // alert('usuário cadastrado!')
+  // window.location.href ='/explore-php'
+}
+
 const aviso = (msg)=> {
     alert(msg)
 }
+
 
 const mostraIdade = ()=>{
     let span = document.getElementById('txt-idade')
@@ -15,7 +28,7 @@ const monstraData = ()=> {
   let mes = dataAtual.getMonth() + 1
   let ano = dataAtual.getFullYear()
   let hora = dataAtual.getHours()
-  let valor = dia +'/'+ mes + '/' + ano + ' - ' + hora
+  let valor = dia +'/'+ mes + '/' + ano
 
   document.getElementById('dt-cadastro').value = valor
 }
